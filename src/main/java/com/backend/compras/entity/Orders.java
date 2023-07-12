@@ -22,7 +22,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "orders")
 public class Orders {
@@ -35,7 +34,7 @@ public class Orders {
     private String  name;
     
     @Column(name = "date")
-    private Date createdDate; //AAAA-mm-dd
+    private Date date; //AAAA-mm-dd
  
     @Column(name = "shippingAddress", length = 255, nullable = false)
     private String shippingAddress;
@@ -43,6 +42,24 @@ public class Orders {
     @Column(name = "city", length = 255, nullable = false)
     private String city;
     
-    @Column(name = "pickup")
-    private boolean pickup;
+    @Column(name = "delivery")
+    private boolean delivery;
+    
+    @Column(name = "store_id")
+    private long store_id;
+    
+    @Column(name = "store_name")
+    private String store_name;
+    
+    public Orders(long id, String name, Date date, String shippingAddress, String city, boolean delivery, long store_id, String store_name) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.shippingAddress = shippingAddress;
+        this.city = city;
+        this.delivery = delivery;
+        this.store_id = store_id;
+        this.store_name = store_name;
+    }
 }
