@@ -124,6 +124,14 @@ public class ComprasControlador {
     public List<Orders> listarOrdenes() {
         return repoOrders.findAll();}
     
+    @GetMapping("/orders/{id}")
+    public ResponseEntity<Orders> obtenerOrden(@PathVariable Long id){
+      Orders orden = repoOrders.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException(
+                  "No existe la orden con el Id : "+id));
+      return ResponseEntity.ok(orden);
+    }
+    
     @PostMapping("/saveorder")
     public Orders GuardarOrdenes(@RequestBody Orders orders) {
         return repoOrders.save(orders);
